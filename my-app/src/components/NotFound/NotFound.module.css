@@ -1,0 +1,11 @@
+.notFoundBlock {
+  margin: 20px auto;
+  border-radius: 10px;
+  width: 90%;
+  height: 60px;
+  background-color: rgba(248, 149, 149, 0.5);
+  text-align: center;
+  font-family: 'Myriad Pro', sans-serif;
+  font-size: 22px;
+  line-height: 2.4;
+}
