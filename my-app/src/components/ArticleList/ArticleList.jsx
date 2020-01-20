@@ -3,16 +3,17 @@ import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { Link, withRouter } from 'react-router-dom';
 import styles from './ArticleList.module.css';
+import routes from '../../routes/routes';
 
-const ArticleList = ({ items, location }) => {
+const ArticleList = ({ items, location, match }) => {
   return (
     <ul className={styles.articleList}>
       {items.map(({ id, title, name, backdropPath }) => (
         <li key={id} className={styles.articleListItem}>
           <Link
             to={{
-              pathname: `movies/${id}`,
-              state: { from: { ...location } },
+              pathname: `${routes.MOVIES_PAGE.path}/${id}`,
+              state: { from: { ...location }, prevPage: { ...match } },
             }}
             className={styles.articleListLink}
           >
@@ -35,6 +36,7 @@ const ArticleList = ({ items, location }) => {
 ArticleList.propTypes = {
   items: PropTypes.arrayOf(PropTypes.object).isRequired,
   location: ReactRouterPropTypes.location.isRequired,
+  match: ReactRouterPropTypes.match.isRequired,
 };
 
 export default withRouter(ArticleList);

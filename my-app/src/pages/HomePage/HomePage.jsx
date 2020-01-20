@@ -20,7 +20,6 @@ class HomePage extends Component {
 
   render() {
     const { articles } = this.state;
-   
     return <>{articles && <ArticleList items={articles} />}</>;
   }
 }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactRouterPropTypes from 'react-router-prop-types';
 import qs from 'query-string';
 import * as API from '../../services/server';
 import ArticleList from '../../components/ArticleList/ArticleList';
@@ -9,6 +10,11 @@ class MoviesPage extends Component {
   state = {
     value: '',
     articles: null,
+  };
+
+  static propTypes = {
+    history: ReactRouterPropTypes.history.isRequired,
+    location: ReactRouterPropTypes.location.isRequired,
   };
 
   componentDidMount() {

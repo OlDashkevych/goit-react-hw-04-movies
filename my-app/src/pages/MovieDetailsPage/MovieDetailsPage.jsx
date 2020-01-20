@@ -28,17 +28,17 @@ class MovieDetailsPage extends Component {
   }
 
   handleGoBack = () => {
-    const { history, location, match } = this.props;
-    if (location.state && location.state.from) {
-      history.push({ ...location.state.from });
+    const { history, location } = this.props;
+    if (location.state.from.state) {
+      history.push({ ...location.state.from.state.from });
       return;
     }
-    history.push(match.url);
+    history.push(location.state.from);
   };
 
   render() {
     const { article } = this.state;
-    const { match } = this.props;
+    const { location, match } = this.props;
     const id = getIdFromProps(this.props);
     return (
       <>
@@ -46,7 +46,10 @@ class MovieDetailsPage extends Component {
         <ul className={styles.detailsList}>
           <li className={styles.detailsItem}>
             <NavLink
-              to={`${match.url}${routes.CAST.path}`}
+              to={{
+                pathname: `${match.url}${routes.CAST.path}`,
+                state: { from: { ...location } },
+              }}
               activeClassName={styles.detailsLinkActive}
               className={styles.detailsLink}
             >
@@ -55,7 +58,10 @@ class MovieDetailsPage extends Component {
           </li>
           <li className={styles.detailsItem}>
             <NavLink
-              to={`${match.url}${routes.REVIEW.path}`}
+              to={{
+                pathname: `${match.url}${routes.REVIEW.path}`,
+                state: { from: { ...location } },
+              }}
               activeClassName={styles.detailsLinkActive}
               className={styles.detailsLink}
             >
@@ -66,10 +72,12 @@ class MovieDetailsPage extends Component {
         <Switch>
           <Route
             path={`${match.url}${routes.CAST.path}`}
+            // eslint-disable-next-line react/jsx-props-no-spreading
             render={props => <Cast {...props} id={id} />}
           />
           <Route
             path={`${match.url}${routes.REVIEW.path}`}
+            // eslint-disable-next-line react/jsx-props-no-spreading
             render={props => <Reviews {...props} id={id} />}
           />
         </Switch>
