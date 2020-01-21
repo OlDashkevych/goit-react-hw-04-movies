@@ -18,11 +18,14 @@ class Cast extends Component {
     API.getArticleCredits(id).then(({ data }) =>
       this.setState({ cast: castMapper(data.cast.slice(0, 8)) }),
     );
+    window.scrollTo({
+      top: document.documentElement.scrollHeight,
+      behavior: 'smooth',
+    });
   }
 
   render() {
     const { cast } = this.state;
-
     return (
       <ul className={styles.castList}>
         {cast &&

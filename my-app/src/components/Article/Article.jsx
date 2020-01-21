@@ -17,7 +17,7 @@ const Article = ({
       <FontAwesomeIcon icon={faAngleLeft} className={styles.icon} /> Go back
     </button>
     <div className={styles.article}>
-      <img src={posterPath} alt="film-banner" className={styles.articleImg} />.
+      <img src={posterPath} alt="film-banner" className={styles.articleImg} />
       <div className={styles.articleDescription}>
         <h2>{title}</h2>
         <span>Score: {userScore}</span>

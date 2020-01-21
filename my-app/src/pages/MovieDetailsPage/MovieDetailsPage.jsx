@@ -29,26 +29,27 @@ class MovieDetailsPage extends Component {
 
   handleGoBack = () => {
     const { history, location } = this.props;
-    if (location.state.from.state) {
-      history.push({ ...location.state.from.state.from });
+    if (location.state && location.state.from) {
+      history.push({ ...location.state.from });
       return;
     }
-    history.push(location.state.from);
+    history.push('/movies');
   };
 
   render() {
     const { article } = this.state;
-    const { location, match } = this.props;
+    const { match } = this.props;
     const id = getIdFromProps(this.props);
     return (
       <>
-        {article && <Article onGoBack={this.handleGoBack} {...article} />}
+        {// eslint-disable-next-line react/jsx-props-no-spreading
+        article && <Article onGoBack={this.handleGoBack} {...article} />}
         <ul className={styles.detailsList}>
           <li className={styles.detailsItem}>
             <NavLink
               to={{
                 pathname: `${match.url}${routes.CAST.path}`,
-                state: { from: { ...location } },
+                // state: { from: { ...location } },
               }}
               activeClassName={styles.detailsLinkActive}
               className={styles.detailsLink}
@@ -60,7 +61,7 @@ class MovieDetailsPage extends Component {
             <NavLink
               to={{
                 pathname: `${match.url}${routes.REVIEW.path}`,
-                state: { from: { ...location } },
+                // state: { from: { ...location } },
               }}
               activeClassName={styles.detailsLinkActive}
               className={styles.detailsLink}

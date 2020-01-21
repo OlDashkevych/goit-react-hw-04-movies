@@ -1,6 +1,18 @@
-import HomePage from '../pages/HomePage/HomePage';
-import MoviesPage from '../pages/MoviesPage/MoviesPage';
-import MovieDetailsPage from '../pages/MovieDetailsPage/MovieDetailsPage';
+import { lazy } from 'react';
+
+const HomePage = lazy(() =>
+  import('../pages/HomePage/HomePage' /* webpackChunkName: "home-page" */),
+);
+const MoviesPage = lazy(() =>
+  import(
+    '../pages/MoviesPage/MoviesPage' /* webpackChunkName: "movies-page" */
+  ),
+);
+const MovieDetailsPage = lazy(() =>
+  import(
+    '../pages/MovieDetailsPage/MovieDetailsPage' /* webpackChunkName: "show-details-page" */
+  ),
+);
 
 export default {
   HOME_PAGE: {

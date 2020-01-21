@@ -19,11 +19,14 @@ class Reviews extends Component {
     API.getArticleReview(id).then(({ data }) =>
       this.setState({ reviews: reviewsMapper(data.results) }),
     );
+    window.scrollTo({
+      top: document.documentElement.scrollHeight,
+      behavior: 'smooth',
+    });
   }
 
   render() {
     const { reviews } = this.state;
-
     return (
       <>
         {reviews && reviews.length ? (
