@@ -12,7 +12,7 @@ import styles from './MovieDetailsPage.module.css';
 const getIdFromProps = props => props.match.params.movieId;
 
 class MovieDetailsPage extends Component {
-  state = { article: null };
+  state = { article: null, prevPage: null };
 
   static propTypes = {
     history: ReactRouterPropTypes.history.isRequired,
@@ -21,19 +21,26 @@ class MovieDetailsPage extends Component {
   };
 
   componentDidMount() {
+    const { location } = this.props;
     const id = getIdFromProps(this.props);
     API.getArticlesById(id).then(({ data }) =>
       this.setState({ article: articleMapper(data) }),
     );
+    if (location.state && location.state.from) {
+      this.setState({
+        prevPage: location.state.from,
+      });
+    }
   }
 
   handleGoBack = () => {
-    const { history, location } = this.props;
-    if (location.state && location.state.from) {
-      history.push({ ...location.state.from });
+    const { history } = this.props;
+    const { prevPage } = this.state;
+    if (prevPage) {
+      history.push({ ...prevPage });
       return;
     }
-    history.push('/movies');
+    history.push('/');
   };
 
   render() {
@@ -49,7 +56,6 @@ class MovieDetailsPage extends Component {
             <NavLink
               to={{
                 pathname: `${match.url}${routes.CAST.path}`,
-                // state: { from: { ...location } },
               }}
               activeClassName={styles.detailsLinkActive}
               className={styles.detailsLink}
@@ -61,7 +67,6 @@ class MovieDetailsPage extends Component {
             <NavLink
               to={{
                 pathname: `${match.url}${routes.REVIEW.path}`,
-                // state: { from: { ...location } },
               }}
               activeClassName={styles.detailsLinkActive}
               className={styles.detailsLink}
