@@ -21,7 +21,7 @@ const Navigation = () => (
         className={styles.navLink}
         activeClassName={styles.navLinkActive}
       >
-        Movies
+        About Us
       </NavLink>
     </li>
   </ul>

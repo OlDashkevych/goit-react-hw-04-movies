@@ -5,6 +5,7 @@
   margin: 0 auto;
   display: flex;
   justify-content: center;
+  position: relative;
 }
 .detailsItem {
   width: 200px;

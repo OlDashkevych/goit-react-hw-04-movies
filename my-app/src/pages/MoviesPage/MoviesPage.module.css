@@ -6,6 +6,7 @@
   margin-bottom: 30px;
   font-size: 16px;
   font-family: 'Myriad Pro', sans-serif;
+  position: relative;
 }
 
 .pageInput {

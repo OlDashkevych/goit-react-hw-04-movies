@@ -1,13 +1,17 @@
 import React, { Suspense } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import Loader from 'react-loader-spinner';
+import Particles from 'react-particles-js';
+
 import Navigation from '../Navigation/Navigation';
 import routes from '../../routes/routes';
 import styles from './App.module.css';
+import particlesParams from '../../js/particlesParams';
 
 const App = () => {
   return (
-    <>
+    <div className={styles.appContainer}>
+      <Particles className={styles.particles} params={particlesParams} />
       <Navigation />
       <Suspense
         fallback={
@@ -38,7 +42,7 @@ const App = () => {
           <Redirect to={routes.HOME_PAGE.path} />
         </Switch>
       </Suspense>
-    </>
+    </div>
   );
 };
 

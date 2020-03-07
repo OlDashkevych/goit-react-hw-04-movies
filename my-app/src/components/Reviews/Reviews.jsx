@@ -7,7 +7,7 @@ import NotFound from '../NotFound/NotFound';
 
 class Reviews extends Component {
   state = {
-    reviews: null,
+    reviews: false,
   };
 
   static propTypes = {
@@ -40,9 +40,8 @@ class Reviews extends Component {
               </li>
             ))}
           </ul>
-        ) : (
-          <NotFound />
-        )}
+        ) : null}
+        {reviews.length === 0 ? <NotFound /> : null}
       </>
     );
   }
